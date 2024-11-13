@@ -38,6 +38,9 @@ class Spaceship:
     @property
     def crashed(self):
         return self._crashed
+    @property
+    def path(self):
+        return self._path
     def _update_velocity(self, planet: Planet):
         dist = self._loc.distance_to(planet.origin)
         f_g = planet.gravitational_force(dist, self._m)
@@ -67,7 +70,6 @@ class Spaceship:
         self._path.append(self._loc.coordinates)
 
         if self._loc.in_circle(planet.radius, planet.origin):
-            print(self._loc, planet.origin)
             self._crashed = True
     def __str__(self):
-        return f"Spaceship(Mass={self._m}, Vy={self._v_y}, Vx={self._v_x})"
+        return f"Spaceship(Mass={self._m}, Vy={self._v_y}, Vx={self._v_x}, Pos={self._loc})"
